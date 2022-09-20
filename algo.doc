@@ -1,0 +1,25 @@
+FUNCTION test(array,taille_array)
+
+VARIABLES
+    max_count,max_index,prev_zero,prev_prev_zero,curr:ENTIER
+DEBUT
+    max_count <- 0
+    max_index <- 0
+    prev_zero <- (-1)
+    prev_prev_zero <- (-1)
+    POUR curr DE 0 à taille_array FAIRE
+        SI (array[curr]=0) ALORS
+            SI (curr - prev_prev_zero > max_count) ALORS
+                max_count <- curr - prev_prev_zero
+                max_index <- prev_zero
+            FIN SI
+            prev_prev_zero <- prev_zero
+            prev_zero <- curr
+        FIN SI 
+    FIN POUR 
+    SI (taille_array - prev_prev_zero >= max_count) ALORS
+         max_index <- prev_zero
+  
+     RETOURNER  max_index
+FIN test
+
